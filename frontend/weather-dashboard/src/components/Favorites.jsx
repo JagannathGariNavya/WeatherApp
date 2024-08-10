@@ -21,8 +21,8 @@ const Favorites = ({ onRemoveFavorite }) => {
         {favorites.length > 0 ? (
           favorites.map((favorite) => (
             <li key={favorite.id}>
-              {favorite.city}
-              <button onClick={() => handleRemove(favorite.city)}>Remove</button>
+              {favorite.city} -
+              <button onClick={() => handleRemove(favorite.city)}> Remove</button>
             </li>
           ))
         ) : (

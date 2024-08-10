@@ -17,7 +17,9 @@ const Search = ({ onSearch }) => {
         onChange={(e) => setCity(e.target.value)}
       />
       <button onClick={handleSearch}>
-        <img src={searchIcon} alt="Search" />
+        {/* <img src={searchIcon} alt="Search" /> */}
+        {/* <button>Search</button> */}
+        Search
       </button>
     </div>
   );
