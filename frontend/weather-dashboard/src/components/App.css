@@ -44,7 +44,7 @@ body {
 .search {
   display: flex;
   align-items: center;
-/*   margin-bottom: 20px; */
+  margin-top: 200px;
 }
 
 .search input {

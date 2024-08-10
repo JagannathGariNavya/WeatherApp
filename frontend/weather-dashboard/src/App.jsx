@@ -11,13 +11,11 @@ const App = () => {
   const [lastSearchedCity, setLastSearchedCity] = useState(localStorage.getItem('lastSearchedCity') || '');
 
   useEffect(() => {
-    // Fetch favorites on component mount
-    fetch('https://weatherapp-6wva.onrender.com/favorites') // Ensure this is the correct URL for your backend
+    fetch('http://localhost:3001/favorites')
       .then((response) => response.json())
       .then((data) => setFavorites(data || []))
       .catch((error) => console.error('Error fetching favorites:', error));
 
-    // Fetch last searched city weather if available
     if (lastSearchedCity) {
       handleSearch(lastSearchedCity);
     }
@@ -32,13 +30,13 @@ const App = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      setWeatherData(data.list[0]); // Current weather
+      setWeatherData({ ...data.list[0], city }); // Include city name in weatherData
       setForecastData(data.list.slice(1, 6).map(item => ({
         date: new Date(item.dt * 1000).toLocaleDateString(),
         temp: item.main.temp,
         weather: item.weather[0].main,
         icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`
-      }))); // 5-day forecast
+      })));
       localStorage.setItem('lastSearchedCity', city);
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -48,12 +46,12 @@ const App = () => {
   };
 
   const addFavorite = (city) => {
-    fetch('https://weatherapp-6wva.onrender.com/favorites', {
+    fetch('http://localhost:3001/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ city, id: Date.now() }) // Ensure `city` is included
+      body: JSON.stringify({ city, id: Date.now() })
     })
       .then((response) => response.json())
       .then((data) => {
@@ -65,7 +63,7 @@ const App = () => {
   const removeFavorite = (city) => {
     const favoriteToRemove = favorites.find(fav => fav.city === city);
     if (favoriteToRemove) {
-      fetch(`https://weatherapp-6wva.onrender.com/favorites/${favoriteToRemove.id}`, {
+      fetch(`http://localhost:3001/favorites/${favoriteToRemove.id}`, {
         method: 'DELETE'
       })
         .then(() => {
