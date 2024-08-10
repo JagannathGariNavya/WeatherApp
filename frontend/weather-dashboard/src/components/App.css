@@ -44,7 +44,7 @@ body {
 .search {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+/*   margin-bottom: 20px; */
 }
 
 .search input {
@@ -65,7 +65,7 @@ body {
   background: #ff6f61;
   border: none;
   color: white;
-  padding: 15px;
+/*   padding: 15px; */
   border-radius: 8px;
   cursor: pointer;
   margin-left: 10px;
@@ -92,7 +92,7 @@ body {
 .city-name {
   font-size: 28px;
   margin: 10px 0;
-  color: #333;
+  color: black;
 }
 
 .current-weather img {
