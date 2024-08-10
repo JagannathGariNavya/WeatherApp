@@ -4,7 +4,7 @@ const Favorites = ({ onRemoveFavorite }) => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch('https://weatherapp-2-i7iw.onrender.com/favorites') // Ensure this is the correct URL for your backend
+    fetch('https://weatherapp-6wva.onrender.com/favorites') // Ensure this is the correct URL for your backend
       .then((response) => response.json())
       .then((data) => setFavorites(data || []))
       .catch((error) => console.error('Error fetching favorites:', error));
