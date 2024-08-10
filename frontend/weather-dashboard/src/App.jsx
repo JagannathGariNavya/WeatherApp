@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Main from './components/Main';
 import FiveDayForecast from './components/FiveDayForecast';
-import '../src/components/App.css'; // Ensure you import your CSS file
+import './components/App.css'; // Ensure the path is correct
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     // Fetch favorites on component mount
-    fetch('http://localhost:3001/favorites')
+    fetch('https://weatherapp-6wva.onrender.com/favorites') // Ensure this is the correct URL for your backend
       .then((response) => response.json())
       .then((data) => setFavorites(data || []))
       .catch((error) => console.error('Error fetching favorites:', error));
@@ -48,12 +48,12 @@ const App = () => {
   };
 
   const addFavorite = (city) => {
-    fetch('http://localhost:3001/favorites', {
+    fetch('https://weatherapp-6wva.onrender.com/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ city, id: Date.now() }) // Ensure `city` is correctly included
+      body: JSON.stringify({ city, id: Date.now() }) // Ensure `city` is included
     })
       .then((response) => response.json())
       .then((data) => {
@@ -65,7 +65,7 @@ const App = () => {
   const removeFavorite = (city) => {
     const favoriteToRemove = favorites.find(fav => fav.city === city);
     if (favoriteToRemove) {
-      fetch(`http://localhost:3001/favorites/${favoriteToRemove.id}`, {
+      fetch(`https://weatherapp-6wva.onrender.com/favorites/${favoriteToRemove.id}`, {
         method: 'DELETE'
       })
         .then(() => {

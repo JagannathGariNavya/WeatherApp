@@ -12,7 +12,7 @@ const Main = ({ onSearch, weatherData, onAddFavorite, onRemoveFavorite, favorite
           <WeatherDisplay
             weatherData={weatherData}
             onAddFavorite={onAddFavorite}
-            unit={unit} // Pass the unit prop here
+            unit={unit}
           />
         </div>
         <Favorites onRemoveFavorite={onRemoveFavorite} />
