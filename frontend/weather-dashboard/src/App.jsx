@@ -11,7 +11,7 @@ const App = () => {
   const [lastSearchedCity, setLastSearchedCity] = useState(localStorage.getItem('lastSearchedCity') || '');
 
   useEffect(() => {
-    fetch('http://localhost:3001/favorites')
+    fetch('https://weatherapp-2-i7iw.onrender.com/favorites')
       .then((response) => response.json())
       .then((data) => setFavorites(data || []))
       .catch((error) => console.error('Error fetching favorites:', error));
@@ -46,7 +46,7 @@ const App = () => {
   };
 
   const addFavorite = (city) => {
-    fetch('http://localhost:3001/favorites', {
+    fetch('https://weatherapp-2-i7iw.onrender.com/favorites', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const App = () => {
   const removeFavorite = (city) => {
     const favoriteToRemove = favorites.find(fav => fav.city === city);
     if (favoriteToRemove) {
-      fetch(`http://localhost:3001/favorites/${favoriteToRemove.id}`, {
+      fetch(`https://weatherapp-2-i7iw.onrender.com/${favoriteToRemove.id}`, {
         method: 'DELETE'
       })
         .then(() => {
